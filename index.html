@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Notes Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="header-content">
+        <div class="header-title-section">
+          <div class="header-icon">📝</div>
+          <div>
+            <h1>Daily Notes Tracker</h1>
+            <p class="header-subtitle">Write notes for each day, save them locally in your browser, and review the list of all notes created so far.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="toolbar" role="toolbar" aria-label="Notes toolbar">
+        <div class="search-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="search" id="searchInput" placeholder="Search notes..." aria-label="Search notes" />
+        </div>
+        <div class="toolbar-actions">
+          <button type="button" id="toggleTheme" class="btn-icon" title="Toggle dark/light mode">🌙</button>
+          <button type="button" id="toggleSort" class="btn-icon" title="Toggle sort order">⏰</button>
+          <button type="button" id="exportBtn" class="btn-icon" title="Export notes">💾</button>
+          <button type="button" id="importBtn" class="btn-icon" title="Import notes">📥</button>
+          <input type="file" id="importFile" accept="application/json" style="display:none" />
+          <button type="button" id="clearAll" class="btn-icon btn-danger" title="Clear all notes">🗑️</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-content">
+      <section class="card card-create" aria-labelledby="note-form-title">
+        <div class="notes-header">
+          <div>
+            <h2 id="note-form-title">✨ Create a New Note</h2>
+            <p style="margin: 8px 0 0; color: var(--muted); font-size: 0.95rem;">Capture your thoughts and ideas for the day</p>
+          </div>
+        </div>
+
+        <form id="noteForm">
+          <div class="field">
+            <label for="noteDate">📅 Date</label>
+            <input type="date" id="noteDate" name="noteDate" required />
+          </div>
+
+          <div class="field">
+            <label for="noteText">💭 Notes</label>
+            <textarea id="noteText" name="noteText" placeholder="Write your note here..." required></textarea>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="btn-primary">💾 Save Note</button>
+            <button type="button" id="resetForm" class="btn-secondary">↺ Reset</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card card-list" aria-labelledby="list-title">
+        <div class="notes-header notes-filter-header">
+          <div>
+            <h2 id="list-title">📚 Saved Notes</h2>
+            <p style="margin: 8px 0 0; color: var(--muted); font-size: 0.95rem;">Filter, search, and manage your notes</p>
+          </div>
+          <div class="filter-controls">
+            <label for="filterDate" class="filter-label">📆 Filter by date</label>
+            <input type="date" id="filterDate" name="filterDate" />
+            <button type="button" id="applyFilter" class="btn-filter">Apply</button>
+            <button type="button" id="clearFilter" class="btn-filter btn-secondary">Clear</button>
+          </div>
+        </div>
+        <div id="notesList" class="note-list">
+          <div class="note-empty">No notes yet. Add a note using the form above.</div>
+        </div>
+      </section>
+    </div>
+    <div id="status" class="status" aria-live="polite"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
